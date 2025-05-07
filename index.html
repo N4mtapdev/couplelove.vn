@@ -96,61 +96,140 @@
             transform: scale(1.1);
         }
 
-        /* Dịch vụ Section - Carousel */
+        /* Dịch vụ Section */
         .services {
             padding: 50px 20px;
             background: #fef1f5;
-            overflow: hidden;
+            overflow-x: auto;
+            white-space: nowrap;
         }
 
         .services-wrapper {
             display: flex;
-            animation: slide 12s infinite linear; /* Tạo hiệu ứng di chuyển ngang tự động */
+            gap: 20px;
         }
 
         .service-card {
-            background: #fff;
+            background: #1a1a1a; /* Nền tối giống hình */
             border-radius: 15px;
             padding: 20px;
             text-align: center;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s;
-            width: 250px; /* Kích thước cố định bằng nhau cho tất cả card */
-            height: 200px; /* Chiều cao cố định để đồng đều */
-            margin: 0 10px; /* Khoảng cách giữa các card */
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s, box-shadow 0.3s, width 0.3s, height 0.3s;
+            width: 250px;
+            height: 200px;
+            margin: 0;
             display: flex;
             flex-direction: column;
             justify-content: center;
+            position: relative;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        /* Thêm "ear" ở góc trên bên phải */
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 0;
+            height: 0;
+            border-top: 20px solid transparent; /* Độ dài "ear" */
+            border-right: 20px solid #ff6f9c; /* Màu gradient */
+            border-bottom: 20px solid transparent;
+            border-left: 20px solid transparent;
+            z-index: 1;
         }
 
         .service-card:hover {
-            transform: translateY(-10px);
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
         }
 
         .service-card h3 {
             font-size: 1.3em;
-            color: #ff6f9c;
+            color: #fff;
             margin-bottom: 10px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+            z-index: 2;
+            position: relative;
         }
 
         .service-card p {
             font-size: 0.9em;
-            color: #555;
+            color: #ccc; /* Màu sáng hơn cho nội dung phụ */
             overflow: hidden;
             text-overflow: ellipsis;
             display: -webkit-box;
             -webkit-line-clamp: 3;
             -webkit-box-orient: vertical;
+            display: none;
+            z-index: 2;
+            position: relative;
         }
 
-        /* Hiệu ứng di chuyển ngang */
-        @keyframes slide {
-            0% {
-                transform: translateX(0);
-            }
-            100% {
-                transform: translateX(-100%);
-            }
+        .service-card button {
+            background: #333;
+            color: #fff;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.9em;
+            transition: background 0.3s;
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+        }
+
+        .service-card button:hover {
+            background: #555;
+        }
+
+        .service-card.expanded {
+            height: 300px;
+            width: auto;
+            min-width: 250px;
+            max-width: 90%;
+            z-index: 10;
+            padding: 30px;
+        }
+
+        .service-card.expanded p {
+            display: block;
+        }
+
+        .service-card .experience-btn {
+            display: none;
+        }
+
+        .service-card.expanded .experience-btn {
+            display: inline-block;
+            background: #ff6f9c;
+            color: #fff;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.9em;
+            text-decoration: none;
+            transition: background 0.3s;
+            position: absolute;
+            bottom: 10px;
+            left: 70%;
+            transform: translateX(-50%);
+            z-index: 2;
+        }
+
+        .service-card.expanded .experience-btn:hover {
+            background: #ff4d80;
+        }
+
+        .service-card.expanded button {
+            display: none; /* Ẩn nút Xem khi card mở rộng */
         }
 
         /* Quảng cáo Google AdSense */
@@ -177,6 +256,33 @@
             font-size: 1em;
         }
 
+        .designed-by {
+            font-size: 0.9em;
+            margin-top: 5px;
+            background: linear-gradient(
+                45deg,
+                #ff4500, #ff8c00, #ffd700, #9acd32,
+                #00ced1, #1e90ff, #9400d3, #ff4500
+            );
+            background-size: 200%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: rainbow 8s ease-in-out infinite;
+        }
+
+        @keyframes rainbow {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             header h1 {
@@ -193,12 +299,41 @@
             }
 
             .service-card {
-                width: 200px; /* Giảm kích thước trên mobile */
+                width: 200px;
                 height: 180px;
+            }
+
+            .service-card::before {
+                border-top: 15px solid transparent;
+                border-right: 15px solid #ff6f9c;
+                border-bottom: 15px solid transparent;
+                border-left: 15px solid transparent;
+            }
+
+            .service-card.expanded {
+                height: 250px;
+                min-width: 200px;
+                max-width: 90%;
+                padding: 20px;
+            }
+
+            .service-card button {
+                padding: 6px 12px;
+                font-size: 0.8em;
+            }
+
+            .service-card.expanded .experience-btn {
+                padding: 6px 12px;
+                font-size: 0.8em;
+                left: 70%;
             }
 
             .ads {
                 padding: 10px;
+            }
+
+            .designed-by {
+                font-size: 0.8em;
             }
         }
     </style>
@@ -241,35 +376,43 @@
     <!-- Dịch vụ Section -->
     <section class="services" id="services">
         <div class="services-wrapper">
-            <!-- Lặp lại các card để tạo hiệu ứng carousel liên tục -->
-            <a href="cd.html" style="text-decoration: none;">
-                <div class="service-card">
-                    <h3>Hiệu Ứng Tình Yêu</h3>
-                    <p>☞ Nhấp vào để trải nghiệm tính năng ☜</p>
-                </div>
-            </a>
+            <!-- Các card -->
+            <div class="service-card">
+                <h3>Hiệu Ứng Tình Yêu</h3>
+                <p>Ngày bắt đầu: 08.05.2025</p>
+                <button onclick="this.parentElement.classList.toggle('expanded')">Xem</button>
+                <a href="cd.html" class="experience-btn">Trải Nghiệm</a>
+            </div>
             <div class="service-card">
                 <h3>Thiết Kế Web Lãng Mạn</h3>
-                <p>Tạo một trang web riêng cho bạn và người ấy, lưu giữ kỷ niệm tình yêu. (Tính năng đang xem xét và phát triển)</p>
+                <p>Ngày bắt đầu: 15.05.2025 (Tính năng đang xem xét)</p>
+                <button onclick="this.parentElement.classList.toggle('expanded')">Xem</button>
+                <a href="#" class="experience-btn">Trải Nghiệm</a>
             </div>
             <div class="service-card">
                 <h3>Thiệp Tình Yêu Online</h3>
-                <p>Thiết kế thiệp online để gửi lời yêu thương đến người đặc biệt. (Tính năng đang xem xét và phát triển)</p>
+                <p>Ngày bắt đầu: 22.05.2025 (Tính năng đang xem xét)</p>
+                <button onclick="this.parentElement.classList.toggle('expanded')">Xem</button>
+                <a href="#" class="experience-btn">Trải Nghiệm</a>
             </div>
-            <!-- Lặp lại các card để tạo hiệu ứng liên tục -->
-            <a href="cd.html" style="text-decoration: none;">
-                <div class="service-card">
-                    <h3>Hiệu Ứng Tình Yêu</h3>
-                    <p>☞ Nhấp vào để trải nghiệm tính năng ☜</p>
-                </div>
-            </a>
+            <!-- Lặp lại các card -->
+            <div class="service-card">
+                <h3>Hiệu Ứng Tình Yêu</h3>
+                <p>Ngày bắt đầu: 08.05.2025</p>
+                <button onclick="this.parentElement.classList.toggle('expanded')">Xem</button>
+                <a href="cd.html" class="experience-btn">Trải Nghiệm</a>
+            </div>
             <div class="service-card">
                 <h3>Thiết Kế Web Lãng Mạn</h3>
-                <p>Tạo một trang web riêng cho bạn và người ấy, lưu giữ kỷ niệm tình yêu. (Tính năng đang xem xét và phát triển)</p>
+                <p>Ngày bắt đầu: 15.05.2025</p>
+                <button onclick="this.parentElement.classList.toggle('expanded')">Xem</button>
+                <a href="#" class="experience-btn">Trải Nghiệm</a>
             </div>
             <div class="service-card">
                 <h3>Thiệp Tình Yêu Online</h3>
-                <p>Thiết kế thiệp online để gửi lời yêu thương đến người đặc biệt. (Tính năng đang xem xét và phát triển)</p>
+                <p>Ngày bắt đầu: 22.05.2025</p>
+                <button onclick="this.parentElement.classList.toggle('expanded')">Xem</button>
+                <a href="#" class="experience-btn">Trải Nghiệm</a>
             </div>
         </div>
     </section>
@@ -290,6 +433,7 @@
     <!-- Footer -->
     <footer id="footer">
         <p>© Copyright Couple_Love | @ All rights reserved</p>
+        <p class="designed-by">Designed by Namzotrii</p>
     </footer>
 </body>
 </html>
