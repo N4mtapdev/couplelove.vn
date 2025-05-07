@@ -96,24 +96,28 @@
             transform: scale(1.1);
         }
 
-        /* Dịch vụ Section */
+        /* Dịch vụ Section - Carousel */
         .services {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 20px;
             padding: 50px 20px;
             background: #fef1f5;
+            overflow: hidden;
+        }
+
+        .services-wrapper {
+            display: flex;
+            animation: slide 12s infinite linear; /* Tạo hiệu ứng di chuyển ngang tự động */
         }
 
         .service-card {
             background: #fff;
             border-radius: 15px;
             padding: 20px;
-            width: 250px;
             text-align: center;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s;
+            min-width: 200px; /* Kích thước tối thiểu */
+            flex-grow: 1; /* Tự động điều chỉnh kích thước */
+            margin: 0 10px; /* Khoảng cách giữa các card */
         }
 
         .service-card:hover {
@@ -129,6 +133,16 @@
         .service-card p {
             font-size: 0.9em;
             color: #555;
+        }
+
+        /* Hiệu ứng di chuyển ngang */
+        @keyframes slide {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-100%);
+            }
         }
 
         /* Quảng cáo Google AdSense */
@@ -170,13 +184,8 @@
                 font-size: 2em;
             }
 
-            .services {
-                flex-direction: column;
-                align-items: center;
-            }
-
             .service-card {
-                width: 80%;
+                min-width: 150px; /* Giảm kích thước tối thiểu trên mobile */
             }
 
             .ads {
@@ -222,19 +231,37 @@
 
     <!-- Dịch vụ Section -->
     <section class="services" id="services">
-        <a href="cd.html" style="text-decoration: none;">
+        <div class="services-wrapper">
+            <!-- Lặp lại các card để tạo hiệu ứng carousel liên tục -->
+            <a href="cd.html" style="text-decoration: none;">
+                <div class="service-card">
+                    <h3>Hiệu Ứng Tình Yêu</h3>
+                    <p>Hiện tại tính năng này đang cập nhật – Comming Soon</p>
+                </div>
+            </a>
             <div class="service-card">
-                <h3>Hiệu Ứng Tình Yêu</h3>
-                <p>Nhấp vào để trải nghiệm</p>
+                <h3>Thiết Kế Web Lãng Mạn</h3>
+                <p>Tạo một trang web riêng cho bạn và người ấy, lưu giữ kỷ niệm tình yêu.</p>
             </div>
-        </a>
-        <div class="service-card">
-            <h3>Thiết Kế Web Lãng Mạn</h3>
-            <p>Tạo một trang web riêng cho bạn và người ấy, lưu giữ kỷ niệm tình yêu. (Chưa hoàn thành – Comming Soon)</p>
-        </div>
-        <div class="service-card">
-            <h3>Thiệp Tình Yêu Online</h3>
-            <p>Thiết kế thiệp online để gửi lời yêu thương đến người đặc biệt.</p>
+            <div class="service-card">
+                <h3>Thiệp Tình Yêu Online</h3>
+                <p>Thiết kế thiệp online để gửi lời yêu thương đến người đặc biệt.</p>
+            </div>
+            <!-- Lặp lại các card để tạo hiệu ứng liên tục -->
+            <a href="cd.html" style="text-decoration: none;">
+                <div class="service-card">
+                    <h3>Hiệu Ứng Tình Yêu</h3>
+                    <p>Hiện tại tính năng này đang cập nhật – Comming Soon</p>
+                </div>
+            </a>
+            <div class="service-card">
+                <h3>Thiết Kế Web Lãng Mạn</h3>
+                <p>Tạo một trang web riêng cho bạn và người ấy, lưu giữ kỷ niệm tình yêu.</p>
+            </div>
+            <div class="service-card">
+                <h3>Thiệp Tình Yêu Online</h3>
+                <p>Thiết kế thiệp online để gửi lời yêu thương đến người đặc biệt.</p>
+            </div>
         </div>
     </section>
 
@@ -254,7 +281,6 @@
     <!-- Footer -->
     <footer id="footer">
         <p>© Copyright Couple_Love | @ All rights reserved</p>
-        <p><i>♥ Designed by N4mzotrii ♥</i></p>
     </footer>
 </body>
 </html>
