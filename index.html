@@ -115,9 +115,12 @@
             text-align: center;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s;
-            min-width: 200px; /* Kích thước tối thiểu */
-            flex-grow: 1; /* Tự động điều chỉnh kích thước */
+            width: 250px; /* Kích thước cố định bằng nhau cho tất cả card */
+            height: 200px; /* Chiều cao cố định để đồng đều */
             margin: 0 10px; /* Khoảng cách giữa các card */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
 
         .service-card:hover {
@@ -133,6 +136,11 @@
         .service-card p {
             font-size: 0.9em;
             color: #555;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
         }
 
         /* Hiệu ứng di chuyển ngang */
@@ -185,7 +193,8 @@
             }
 
             .service-card {
-                min-width: 150px; /* Giảm kích thước tối thiểu trên mobile */
+                width: 200px; /* Giảm kích thước trên mobile */
+                height: 180px;
             }
 
             .ads {
@@ -250,7 +259,7 @@
             <!-- Lặp lại các card để tạo hiệu ứng liên tục -->
             <a href="cd.html" style="text-decoration: none;">
                 <div class="service-card">
-                    <h3>Hiệu Ứng Tình Yêu,</h3>
+                    <h3>Hiệu Ứng Tình Yêu</h3>
                     <p>☞ Nhấp vào để trải nghiệm tính năng ☜</p>
                 </div>
             </a>
@@ -260,7 +269,7 @@
             </div>
             <div class="service-card">
                 <h3>Thiệp Tình Yêu Online</h3>
-                <p>Thiết kế thiệp online để gửi lời yêu thương đến người đặc biệt.</p>
+                <p>Thiết kế thiệp online để gửi lời yêu thương đến người đặc biệt. (Tính năng đang xem xét và phát triển)</p>
             </div>
         </div>
     </section>
