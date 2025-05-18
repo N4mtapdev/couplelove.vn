@@ -1,6 +1,6 @@
 # 🌟 Dự án Couple Love 💑
 
-**Owned by:** <span style="background: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet); -webkit-background-clip: text; color: transparent; font-weight: bold;">N4mtapdev</span>
+**Owned by:** N4mtapdev
 **Công nghệ sử dụng:** HTML, CSS, JavaScript  
 **Website:** [Truy cập ngay!](https://capdoi.vercel.app) 🚀  
 
