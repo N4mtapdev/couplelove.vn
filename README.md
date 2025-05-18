@@ -35,7 +35,7 @@ Couple Love là nơi dành cho các cặp đôi muốn **kết nối**, **lan t�
 ## 📢 Hashtag chính thức
 
 Hãy chia sẻ câu chuyện tình yêu của bạn với chúng tôi! 💬  
-#CoupleLove #Lovely #CapDoi #TinhYeu #YêuLàPhảiChill #
+> #CoupleLove #Lovely #CapDoi #TinhYeu #YêuLàPhảiChill #
 
 ---
 
