@@ -1,8 +1,3 @@
----
-title: Dự án Couple Love 💖
-description: Khám phá dự án Couple Love - nơi lan tỏa tình yêu và kết nối các cặp đôi!
----
-
 # 🌟 Dự án Couple Love 💑
 
 **Owned by:** *N4mtapdev*  
