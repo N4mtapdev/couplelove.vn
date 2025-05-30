@@ -1,7 +1,7 @@
 # 🌟 Dự án Couple Love 💑
 
 **Owned by:** N4mtapdev
-**Công nghệ sử dụng:** HTML, CSS, JavaScript  
+**Công nghệ sử dụng:** HTML, CSS, JavaScript
 **Website:** [Truy cập ngay!](https://capdoi.vercel.app) 🚀  
 
 ---
