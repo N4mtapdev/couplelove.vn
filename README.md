@@ -35,13 +35,13 @@ Couple Love là nơi dành cho các cặp đôi muốn **kết nối**, **lan t�
 ## 📢 Hashtag chính thức
 
 Hãy chia sẻ câu chuyện tình yêu của bạn với chúng tôi! 💬  
-> #CoupleLove #Lovely #CapDoi #TinhYeu #YêuLàPhảiChill #
+> #CoupleLove #Lovely #CapDoi #TinhYeu #YêuLàPhảiChill 
 
 ---
 
 ## 📩 Liên hệ & Hỗ trợ
 
-- **Email**: n4mtapdev@example.com  
+- **Email**: reply.n4mtapdev@gmail.com
 - **X Profile**: [@N4mtapdev](https://x.com/n4mtapdev)  
 - **Hỗ trợ**: Gửi tin nhắn trực tiếp để được giải đáp nhanh chóng! 📧
 
