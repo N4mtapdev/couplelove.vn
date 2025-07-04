@@ -34,7 +34,7 @@ app.post('/api/signup', (req, res) => {
         return res.json({ success: false, message: 'Vui lòng hoàn tất xác minh reCAPTCHA!' });
     }
 
-    const secretKey = 'YOUR_SECRET_KEY'; // Thay bằng Secret Key từ Google reCAPTCHA
+    const secretKey = '6LdbzHUrAAAAAKLMs-GFhjTKNLfKlElRFtFZ9yOz'; // Thay bằng Secret Key từ Google reCAPTCHA
     const verifyUrl = `https://www.google.com/recaptcha/api/siteverify?secret=${secretKey}&response=${captchaToken}`;
 
     request(verifyUrl, (error, response, body) => {
