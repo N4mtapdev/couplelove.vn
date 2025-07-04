@@ -64,6 +64,7 @@
             margin: 20px;
             border-radius: 15px;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            display: none;
         }
 
         .hero h2 {
@@ -100,34 +101,27 @@
         .services {
             padding: 50px 20px;
             background: #fef1f5;
-            overflow-x: auto;
-            white-space: nowrap;
-        }
-
-        .services-wrapper {
-            display: flex;
-            gap: 20px;
+            text-align: center;
         }
 
         .service-card {
-            background: #1a1a1a; /* Nền tối giống hình */
-            border-radius: 15px;
+            background: #1a1a1a;
+            border-radius: 12px;
             padding: 20px;
             text-align: center;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-            transition: transform 0.3s, box-shadow 0.3s, width 0.3s, height 0.3s;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, height 0.3s ease, width 0.3s ease;
             width: 250px;
             height: 200px;
-            margin: 0;
+            margin: 0 auto;
             display: flex;
             flex-direction: column;
             justify-content: center;
             position: relative;
             overflow: hidden;
-            flex-shrink: 0;
+            cursor: pointer;
         }
 
-        /* Thêm "ear" ở góc trên bên phải */
         .service-card::before {
             content: '';
             position: absolute;
@@ -135,16 +129,16 @@
             right: 0;
             width: 0;
             height: 0;
-            border-top: 20px solid transparent; /* Độ dài "ear" */
-            border-right: 20px solid #ff6f9c; /* Màu gradient */
-            border-bottom: 20px solid transparent;
-            border-left: 20px solid transparent;
-            z-index: 1;
+            border-top: 15px solid transparent;
+            border-right: 15px solid #ff6f9c;
+            border-bottom: 15px solid transparent;
+            border-left: 15px solid transparent;
+            transition: opacity 0.3s ease;
         }
 
         .service-card:hover {
-            transform: scale(1.05);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
         }
 
         .service-card h3 {
@@ -158,7 +152,7 @@
 
         .service-card p {
             font-size: 0.9em;
-            color: #ccc; /* Màu sáng hơn cho nội dung phụ */
+            color: #ccc;
             overflow: hidden;
             text-overflow: ellipsis;
             display: -webkit-box;
@@ -177,37 +171,21 @@
             border-radius: 20px;
             cursor: pointer;
             font-size: 0.9em;
-            transition: background 0.3s;
+            transition: background 0.3s ease;
             position: absolute;
-            bottom: 10px;
+            bottom: 15px;
             left: 50%;
             transform: translateX(-50%);
             z-index: 2;
+            display: none;
         }
 
         .service-card button:hover {
             background: #555;
         }
 
-        .service-card.expanded {
-            height: 300px;
-            width: auto;
-            min-width: 250px;
-            max-width: 90%;
-            z-index: 10;
-            padding: 30px;
-        }
-
-        .service-card.expanded p {
-            display: block;
-        }
-
         .service-card .experience-btn {
             display: none;
-        }
-
-        .service-card.expanded .experience-btn {
-            display: inline-block;
             background: #ff6f9c;
             color: #fff;
             border: none;
@@ -216,30 +194,135 @@
             cursor: pointer;
             font-size: 0.9em;
             text-decoration: none;
-            transition: background 0.3s;
+            transition: background 0.3s ease;
             position: absolute;
-            bottom: 10px;
+            bottom: 15px;
             left: 70%;
             transform: translateX(-50%);
             z-index: 2;
         }
 
-        .service-card.expanded .experience-btn:hover {
+        .service-card .experience-btn:hover {
             background: #ff4d80;
         }
 
-        .service-card.expanded button {
-            display: none; /* Ẩn nút Xem khi card mở rộng */
+        .service-card.expanded {
+            height: 300px;
+            width: 400px;
+            z-index: 1000;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            position: relative;
         }
 
-        /* Quảng cáo Google AdSense */
-        .ads {
-            text-align: center;
+        .service-card.expanded p {
+            display: block;
+        }
+
+        .service-card.expanded button {
+            display: inline-block;
+        }
+
+        .service-card.expanded .experience-btn {
+            display: inline-block;
+        }
+
+        /* Modal (ImGui-style) */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #1a1a1a;
             padding: 20px;
-            margin: 20px 0;
-            background: #fff;
-            border-radius: 15px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            z-index: 1001;
+            width: 300px;
+            color: #fff;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .modal h2 {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            color: #ff6f9c;
+        }
+
+        .modal .form-group {
+            margin-bottom: 10px;
+        }
+
+        .modal input, .modal select {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #333;
+            border-radius: 4px;
+            background: #2a2a2a;
+            color: #fff;
+        }
+
+        .modal button {
+            padding: 8px 16px;
+            background: #ff6f9c;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.3s;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .modal button:hover {
+            background: #ff4d80;
+        }
+
+        .modal .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 1.2em;
+            cursor: pointer;
+        }
+
+        .modal .pro-code {
+            display: none;
+            margin-top: 10px;
+        }
+
+        .modal .g-recaptcha {
+            margin: 10px 0;
+        }
+
+        .modal .toggle-link {
+            color: #ff6f9c;
+            text-decoration: none;
+            font-size: 0.9em;
+            cursor: pointer;
+            text-align: center;
+            display: block;
+            margin-top: 10px;
+        }
+
+        .modal .toggle-link:hover {
+            color: #ff4d80;
+        }
+
+        /* Overlay */
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
         }
 
         /* Footer */
@@ -272,76 +355,43 @@
         }
 
         @keyframes rainbow {
-            0% {
-                background-position: 0% 50%;
-            }
-            50% {
-                background-position: 100% 50%;
-            }
-            100% {
-                background-position: 0% 50%;
-            }
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
         /* Responsive */
         @media (max-width: 768px) {
-            header h1 {
-                font-size: 1.5em;
-            }
-
-            .hero {
-                padding: 50px 10px;
-                margin: 10px;
-            }
-
-            .hero h2 {
-                font-size: 2em;
-            }
-
-            .service-card {
-                width: 200px;
-                height: 180px;
-            }
-
+            header h1 { font-size: 1.5em; }
+            .hero { padding: 50px 10px; margin: 10px; }
+            .hero h2 { font-size: 2em; }
+            .service-card { width: 200px; height: 180px; }
             .service-card::before {
-                border-top: 15px solid transparent;
-                border-right: 15px solid #ff6f9c;
-                border-bottom: 15px solid transparent;
-                border-left: 15px solid transparent;
+                border-top: 12px solid transparent;
+                border-right: 12px solid #ff6f9c;
+                border-bottom: 12px solid transparent;
+                border-left: 12px solid transparent;
             }
-
             .service-card.expanded {
                 height: 250px;
-                min-width: 200px;
-                max-width: 90%;
-                padding: 20px;
+                width: 300px;
+                padding: 15px;
             }
-
-            .service-card button {
-                padding: 6px 12px;
-                font-size: 0.8em;
-            }
-
+            .service-card button { padding: 6px 12px; font-size: 0.8em; }
             .service-card.expanded .experience-btn {
                 padding: 6px 12px;
                 font-size: 0.8em;
                 left: 70%;
             }
-
-            .ads {
-                padding: 10px;
+            .modal {
+                width: 90%;
+                padding: 15px;
             }
-
-            .designed-by {
-                font-size: 0.8em;
-            }
+            .designed-by { font-size: 0.8em; }
         }
     </style>
 </head>
 <body>
-    <!-- Script AdSense -->
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9244397162570790" crossorigin="anonymous"></script>
-
     <!-- Header -->
     <header>
         <h1>Couple Love</h1>
@@ -354,67 +404,255 @@
     </header>
 
     <!-- Hero Section -->
-    <section class="hero">
+    <section class="hero" id="hero">
         <h2>Chào Mừng Đến Với Couple Love</h2>
         <p>Chúng tôi giúp bạn tạo nên những kỷ niệm đẹp với người thương qua các thiết kế và dịch vụ lãng mạn.</p>
         <a href="cd.html" class="btn">Bắt Đầu Ngay</a>
     </section>
 
-    <!-- Quảng cáo giữa trang -->
-    <div class="ads">
-        <ins class="adsbygoogle"
-             style="display:block; text-align:center;"
-             data-ad-client="ca-pub-9244397162570790"
-             data-ad-slot="4996735833"
-             data-ad-format="auto"
-             data-full-width-responsive="true"></ins>
-        <script>
-             (adsbygoogle = window.adsbygoogle || []).push({});
-        </script>
-    </div>
-
     <!-- Dịch vụ Section -->
     <section class="services" id="services">
-        <div class="services-wrapper">
-            <!-- Các card -->
-            <div class="service-card">
-                <h3>Hiệu Ứng Tình Yêu</h3>
-                <p>Ngày bắt đầu: 08.05.2025</p>
-                <button onclick="this.parentElement.classList.toggle('expanded')">Xem</button>
-                <a href="cd.html" class="experience-btn">Trải Nghiệm</a>
-            </div>
-            <div class="service-card">
-                <h3>Thiết Kế Web Lãng Mạn</h3>
-                <p>Ngày bắt đầu: 15.05.2025 (Tính năng đang xem xét)</p>
-                <button onclick="this.parentElement.classList.toggle('expanded')">Xem</button>
-                <a href="#" class="experience-btn">Trải Nghiệm</a>
-            </div>
-            <div class="service-card">
-                <h3>Thiệp Tình Yêu Online</h3>
-                <p>Ngày bắt đầu: 22.05.2025 (Tính năng đang xem xét)</p>
-                <button onclick="this.parentElement.classList.toggle('expanded')">Xem</button>
-                <a href="#" class="experience-btn">Trải Nghiệm</a>
-            </div>
+        <div class="service-card" onclick="toggleCard(this)">
+            <h3>Hiệu Ứng Tình Yêu</h3>
+            <p>Ngày bắt đầu: 08.05.2025</p>
+            <button>Xem</button>
+            <a href="cd.html" class="experience-btn">Trải Nghiệm</a>
         </div>
     </section>
 
-    <!-- Quảng cáo chân trang -->
-    <div class="ads" style="margin-bottom: 10px;">
-        <ins class="adsbygoogle"
-             style="display:block; text-align:center;"
-             data-ad-client="ca-pub-9244397162570790"
-             data-ad-slot="4996735833"
-             data-ad-format="auto"
-             data-full-width-responsive="true"></ins>
-        <script>
-             (adsbygoogle = window.adsbygoogle || []).push({});
-        </script>
+    <!-- Welcome Section -->
+    <section class="welcome-section" id="welcome">
+        <h2 id="welcome-message"></h2>
+        <button class="logout-btn" onclick="handleLogout()">Đăng Xuất</button>
+    </section>
+
+    <!-- Modal Đăng Ký/Đăng Nhập -->
+    <div class="overlay" id="auth-overlay" onclick="closeModal()"></div>
+    <div class="modal" id="auth-modal">
+        <button class="close-btn" onclick="closeModal()">×</button>
+        <h2 id="auth-title">Đăng Ký</h2>
+        <div class="form-group" id="signup-form">
+            <label>Tên người dùng</label>
+            <input type="text" id="signup-username" placeholder="Tên người dùng" required>
+            <label>Mật khẩu</label>
+            <input type="password" id="signup-password" placeholder="Mật khẩu" required>
+            <label>Loại tài khoản</label>
+            <select id="signup-account-type" onchange="toggleProCode()" required>
+                <option value="" disabled selected>Chọn loại tài khoản</option>
+                <option value="Free">Free</option>
+                <option value="VIP">VIP</option>
+                <option value="Pro">Pro</option>
+            </select>
+            <div class="pro-code">
+                <label>Mã Pro</label>
+                <input type="text" id="pro-code" placeholder="Nhập mã Pro từ admin" required>
+            </div>
+            <div class="g-recaptcha" data-sitekey="YOUR_SITE_KEY" data-callback="onCaptchaVerified" data-action="signup"></div>
+            <button type="button" onclick="handleSignup()" disabled id="signup-button">Đăng Ký</button>
+        </div>
+        <div class="form-group" id="login-form" style="display: none;">
+            <label>Tên người dùng</label>
+            <input type="text" id="login-username" placeholder="Tên người dùng" required>
+            <label>Mật khẩu</label>
+            <input type="password" id="login-password" placeholder="Mật khẩu" required>
+            <button onclick="handleLogin()">Đăng Nhập</button>
+        </div>
+        <a class="toggle-link" id="toggle-auth" onclick="toggleAuthForm()">Chuyển sang <span id="toggle-text">Đăng Nhập</span></a>
     </div>
 
     <!-- Footer -->
     <footer id="footer">
         <p>© Copyright Couple_Love | @ All rights reserved</p>
-        <p class="designed-by">♥ Designed by Namzotriii ♥</p>
+        <p class="designed-by">Designed by Namzotrii</p>
     </footer>
+
+    <!-- Google reCAPTCHA Script -->
+    <script src="https://www.google.com/recaptcha/api.js?render=YOUR_SITE_KEY" async defer></script>
+    <script>
+        // Hàm lấy cookie
+        function getCookie(name) {
+            const value = `; ${document.cookie}`;
+            const parts = value.split(`; ${name}=`);
+            if (parts.length === 2) return parts.pop().split(';').shift();
+            return null;
+        }
+
+        // Kiểm tra trạng thái đăng nhập khi tải trang
+        window.onload = () => {
+            const loggedInUser = getCookie('loggedInUser');
+            const userType = getCookie('userType');
+
+            if (loggedInUser && userType) {
+                document.getElementById('hero').style.display = 'block';
+                document.getElementById('services').style.display = 'block';
+                document.getElementById('welcome').style.display = 'block';
+                document.getElementById('welcome-message').textContent = `Chào mừng ${loggedInUser}! Loại tài khoản: ${userType}`;
+            } else {
+                document.getElementById('hero').style.display = 'block';
+                document.getElementById('services').style.display = 'block';
+                showAuthModal(); // Mở modal mặc định nếu chưa đăng nhập
+            }
+            toggleProCode();
+        };
+
+        // Hiển thị/ẩn modal
+        function showAuthModal() {
+            document.getElementById('auth-overlay').style.display = 'block';
+            document.getElementById('auth-modal').style.display = 'block';
+        }
+
+        function closeModal() {
+            document.getElementById('auth-overlay').style.display = 'none';
+            document.getElementById('auth-modal').style.display = 'none';
+        }
+
+        // Chuyển đổi giữa đăng ký và đăng nhập
+        function toggleAuthForm() {
+            const signupForm = document.getElementById('signup-form');
+            const loginForm = document.getElementById('login-form');
+            const authTitle = document.getElementById('auth-title');
+            const toggleText = document.getElementById('toggle-text');
+
+            if (signupForm.style.display === 'block') {
+                signupForm.style.display = 'none';
+                loginForm.style.display = 'block';
+                authTitle.textContent = 'Đăng Nhập';
+                toggleText.textContent = 'Đăng Ký';
+            } else {
+                signupForm.style.display = 'block';
+                loginForm.style.display = 'none';
+                authTitle.textContent = 'Đăng Ký';
+                toggleText.textContent = 'Đăng Nhập';
+            }
+        }
+
+        // Hiển thị/ẩn input mã Pro dựa trên lựa chọn
+        function toggleProCode() {
+            const accountType = document.getElementById('signup-account-type').value;
+            const proCodeDiv = document.querySelector('.pro-code');
+            if (accountType === 'Pro') {
+                proCodeDiv.style.display = 'block';
+            } else {
+                proCodeDiv.style.display = 'none';
+                document.getElementById('pro-code').value = '';
+            }
+        }
+
+        // Xử lý khi reCAPTCHA được xác minh
+        let captchaToken = null;
+        function onCaptchaVerified(token) {
+            captchaToken = token;
+            document.getElementById('signup-button').disabled = false;
+        }
+
+        async function handleSignup() {
+            if (!captchaToken) {
+                alert('Vui lòng hoàn tất xác minh reCAPTCHA!');
+                return;
+            }
+
+            const username = document.getElementById('signup-username').value;
+            const password = document.getElementById('signup-password').value;
+            const accountType = document.getElementById('signup-account-type').value;
+            let proCode = '';
+
+            if (!username || !password || !accountType) {
+                alert('Vui lòng điền đầy đủ thông tin!');
+                return;
+            }
+
+            if (accountType === 'Pro') {
+                proCode = document.getElementById('pro-code').value;
+                if (!proCode) {
+                    alert('Vui lòng nhập mã Pro từ admin!');
+                    return;
+                }
+            }
+
+            const response = await fetch('/api/signup', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ username, password, accountType, proCode, captchaToken })
+            });
+
+            const result = await response.json();
+            alert(result.message);
+            if (result.success) {
+                document.getElementById('signup-username').value = '';
+                document.getElementById('signup-password').value = '';
+                document.getElementById('signup-account-type').value = '';
+                document.getElementById('pro-code').value = '';
+                captchaToken = null;
+                document.getElementById('signup-button').disabled = true;
+                closeModal();
+                window.location.reload();
+            }
+        }
+
+        async function handleLogin() {
+            const username = document.getElementById('login-username').value;
+            const password = document.getElementById('login-password').value;
+
+            if (!username || !password) {
+                alert('Vui lòng điền đầy đủ thông tin!');
+                return;
+            }
+
+            const response = await fetch('/api/login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ username, password })
+            });
+
+            const result = await response.json();
+            alert(result.message);
+            if (result.success) {
+                document.cookie = `loggedInUser=${username}; path=/`;
+                document.cookie = `userType=${result.userType}; path=/`;
+                document.getElementById('login-username').value = '';
+                document.getElementById('login-password').value = '';
+                closeModal();
+                window.location.reload();
+            }
+        }
+
+        function handleLogout() {
+            document.cookie = 'loggedInUser=; Max-Age=-1; path=/';
+            document.cookie = 'userType=; Max-Age=-1; path=/';
+            window.location.reload();
+        }
+
+        // Xử lý toggle card
+        let activeCard = null;
+
+        function toggleCard(card) {
+            const isExpanded = card.classList.contains('expanded');
+
+            if (isExpanded) {
+                card.classList.remove('expanded');
+                card.querySelector('button').style.display = 'none';
+                card.querySelector('.experience-btn').style.display = 'none';
+                activeCard = null;
+            } else {
+                card.classList.add('expanded');
+                card.querySelector('button').style.display = 'inline-block';
+                card.querySelector('.experience-btn').style.display = 'inline-block';
+                activeCard = card;
+            }
+        }
+
+        // Thu nhỏ card khi nhấp ra ngoài
+        document.addEventListener('click', (event) => {
+            const services = document.getElementById('services');
+            const isClickInside = services.contains(event.target);
+
+            if (!isClickInside && activeCard) {
+                activeCard.classList.remove('expanded');
+                activeCard.querySelector('button').style.display = 'none';
+                activeCard.querySelector('.experience-btn').style.display = 'none';
+                activeCard = null;
+            }
+        });
+    </script>
 </body>
 </html>
